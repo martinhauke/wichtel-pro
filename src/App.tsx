@@ -1,21 +1,16 @@
 import React from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import CreateList from './CreateList'
+import Show from "./Show";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<Navigate replace to="create" />} />
+        <Route path="create" element={<CreateList />} />
+        <Route path="show/:code" element={<Show />} />
+      </Routes>
     </div>
   )
 }
