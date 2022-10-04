@@ -3,6 +3,7 @@ import Content from '../__styled__/Content'
 import useParticipant from './useParticipant'
 import AddParticipantInput from './AddParticipantInput'
 import ParticipantList from './ParticipantList'
+import Button from "./__styled__/Button";
 
 const CreateList = () => {
   const { participants, dispatch, shuffle } = useParticipant()
@@ -16,7 +17,7 @@ const CreateList = () => {
     <Content>
       <AddParticipantInput onAddParticipant={handleAddParticipant} />
       <ParticipantList participants={participants} />
-      <input type="button" onClick={shuffle} value="randomize" />
+      <Button onClick={shuffle} value="randomize" />
     </Content>
   )
 }
