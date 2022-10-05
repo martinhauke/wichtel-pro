@@ -17,6 +17,10 @@ const Button = styled.input.attrs({
   &:hover {
     background-color: ${(props) => props.theme.colors.affirmHover};
   }
+
+  &:active {
+    background-color: ${(props) => props.theme.colors.danger};
+  }
 `
 
 export default Button

@@ -22,7 +22,7 @@ const theme: DefaultTheme = {
   },
 
   content: {
-    width: '1200px',
+    width: '600px',
   },
 }
 

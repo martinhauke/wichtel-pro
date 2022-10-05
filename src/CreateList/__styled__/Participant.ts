@@ -6,7 +6,6 @@ const Participant = styled.li`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 500px;
   padding: ${(props) => props.theme.spaces.small};
 
   &:nth-last-of-type(2n) {

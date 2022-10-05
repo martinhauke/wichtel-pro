@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from 'react'
 import Content from '../__styled__/Content'
 import useParticipant from './useParticipant'
-import AddParticipantInput from './AddParticipantInput'
+import AddParticipantInput from './AddParticipantForm'
 import ParticipantList from './ParticipantList'
-import Button from "./__styled__/Button";
+import Button from './__styled__/Button'
 
 const CreateList = () => {
   const { participants, dispatch, shuffle } = useParticipant()
