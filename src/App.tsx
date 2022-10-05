@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import CreateList from './CreateList'
-import Show from "./Show";
+import Show from './Show'
 
 function App() {
   return (
