@@ -15,6 +15,7 @@ const AddParticipantInput = ({
   return (
     <StyledAddParticipantInput
       name="name"
+      placeholder="Participant Name"
       type="text"
       value={name}
       onChange={onChange}

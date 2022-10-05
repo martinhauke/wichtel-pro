@@ -7,6 +7,8 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
+    color: ${(props) => props.theme.colors.textDark};
+    font-family: Helvetica, sans-serif;
   }
 `
 

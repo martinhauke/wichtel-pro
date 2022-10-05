@@ -2,6 +2,7 @@ import React, { memo, useCallback, useState } from 'react'
 import StyledAddParticipantForm from './__styled__/AddParticipantForm'
 import AddParticipantButton from './AddParticipantButton'
 import AddParticipantInput from './AddParticipantInput'
+import AddParticipantLabel from './__styled__/AddParticipantLabel'
 
 type AddParticipantFormProps = {
   onAddParticipant: (name: string) => void
@@ -35,6 +36,9 @@ const AddParticipantForm = ({ onAddParticipant }: AddParticipantFormProps) => {
 
   return (
     <StyledAddParticipantForm>
+      <AddParticipantLabel htmlFor="name">
+        Add participants:
+      </AddParticipantLabel>
       <AddParticipantInput
         name={name}
         onChange={handleNameChange}
