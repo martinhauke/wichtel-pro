@@ -62,9 +62,10 @@ const useParticipant = (): UseParticipant => {
           const target = encodeURIComponent(
             encode(shuffledList[index].name ?? '')
           )
-          console.log(target)
-          console.log(window.location.origin)
-          const href = new URL('/show/' + target, window.location.origin).href
+          const href = new URL(
+            '#/show/' + target,
+            window.location.origin + window.location.pathname
+          ).href
           return {
             ...it,
             target,

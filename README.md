@@ -6,6 +6,23 @@ The web app for professional "Wichtel".
 
 This web app is a quick fix to handle out "Secret Santa" list creation process.
 
+## Dev setup
+
+- run `nvm use && yarn`
+- run `yarn start` to run the app locally ([http://localhost:3000](http://localhost:3000))
+
+## Deployment
+
+This app can be deployed on github pages:
+
+```shell
+yarn deploy
+```
+
+**NOTE:**
+This will not work out of the box for you, since it is configured for my github account.
+You will need to adjust the `homepage` in your `package.json` if you want to deploy it on your own github page.
+
 ## Concept
 
 This is the current plan but may (and will) change along the way. It's just a place to accumulate my first ideas.

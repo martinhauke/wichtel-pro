@@ -1,6 +1,7 @@
 {
   "name": "wichtel-pro",
   "version": "0.1.0",
+  "homepage": "https://martinhauke.github.io/wichtel-pro",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -19,6 +20,8 @@
     "uuid": "^9.0.0"
   },
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -45,6 +48,7 @@
   "devDependencies": {
     "@types/styled-components": "^5.1.26",
     "@types/uuid": "^8.3.4",
+    "gh-pages": "^4.0.0",
     "prettier": "^2.7.1",
     "styled-components": "^5.3.6"
   }
