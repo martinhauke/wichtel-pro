@@ -10,6 +10,20 @@ const GlobalStyle = createGlobalStyle`
     color: ${(props) => props.theme.colors.textDark};
     font-family: Helvetica, sans-serif;
   }
+
+  input {
+    border-radius: ${(props) => props.theme.borderRadius};
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: 1rem;
+  }
+
+  @media screen and (max-width: ${(props) => props.theme.content.width}) {
+    body {
+      font-size: 1.5em;
+    }
+  }
 `
 
 export default GlobalStyle
