@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Helvetica, sans-serif;
   }
 
-  input {
+  input, button {
     border-radius: ${(props) => props.theme.borderRadius};
     -webkit-appearance: none;
     -moz-appearance: none;

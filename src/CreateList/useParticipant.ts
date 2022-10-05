@@ -27,22 +27,38 @@ type ShuffleAction = {
   type: 'shuffle'
 }
 
-const useParticipant = (): UseParticipant => {
-  const shuffleParticipants = (input: Participant[]) => {
-    const shuffled = input.slice(0)
-    for (let i = 0; i < shuffled.length - 1; i++) {
-      const switchIndex = Math.floor(
-        Math.random() * (shuffled.length - (i + 1)) + i + 1
-      )
-      const temp = shuffled[i]
-      shuffled[i] = shuffled[switchIndex]
-      shuffled[switchIndex] = temp
-    }
-    return shuffled
+const shuffleParticipants = (input: Participant[]) => {
+  const shuffled = input.slice(0)
+  for (let i = 0; i < shuffled.length - 1; i++) {
+    const switchIndex = Math.floor(
+      Math.random() * (shuffled.length - (i + 1)) + i + 1
+    )
+    const temp = shuffled[i]
+    shuffled[i] = shuffled[switchIndex]
+    shuffled[switchIndex] = temp
   }
+  return shuffled
+}
 
-  const encode = (input: string) => window.btoa(input)
+const encode = (input: string) => window.btoa(input)
 
+const shuffleAndAssign = (input: Participant[]): Participant[] => {
+  const shuffledList = shuffleParticipants(input)
+  return input.map((it, index) => {
+    const target = encodeURIComponent(encode(shuffledList[index].name ?? ''))
+    const href = new URL(
+      '#/show/' + target,
+      window.location.origin + window.location.pathname
+    ).href
+    return {
+      ...it,
+      target,
+      url: href,
+    }
+  })
+}
+
+const useParticipant = (): UseParticipant => {
   const participantReducer = (
     state: Participant[],
     action: ParticipantAction
@@ -55,23 +71,9 @@ const useParticipant = (): UseParticipant => {
           url: '',
           target: '',
         }
-        return [...state, newParticipant]
+        return shuffleAndAssign([...state, newParticipant])
       case 'shuffle':
-        const shuffledList: Participant[] = shuffleParticipants(state)
-        return state.map((it, index) => {
-          const target = encodeURIComponent(
-            encode(shuffledList[index].name ?? '')
-          )
-          const href = new URL(
-            '#/show/' + target,
-            window.location.origin + window.location.pathname
-          ).href
-          return {
-            ...it,
-            target,
-            url: href,
-          }
-        })
+        return shuffleAndAssign(state)
     }
   }
   const [participants, dispatch] = useReducer(participantReducer, [])

@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
-const Button = styled.input.attrs({
-  type: 'button',
-})`
+const Button = styled.button`
   padding-top: ${(props) => props.theme.spaces.small};
   padding-bottom: ${(props) => props.theme.spaces.small};
   padding-left: ${(props) => props.theme.spaces.medium};

@@ -1,7 +1,6 @@
 import React, { memo } from 'react'
-import Button from './__styled__/Button'
-import useCopyToClipboard from './useCopyToClipboard'
 import StyledParticipant from './__styled__/Participant'
+import ParticipantControls from './ParticipantControls'
 
 type ParticipantProps = {
   name: string
@@ -9,11 +8,10 @@ type ParticipantProps = {
 }
 
 const Participant = ({ name, url }: ParticipantProps) => {
-  const [value, copy] = useCopyToClipboard()
   return (
     <StyledParticipant>
       {name}
-      {url && <Button onClick={(_) => copy(url)} value="copy" />}
+      <ParticipantControls url={url} />
     </StyledParticipant>
   )
 }
