@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/wichtel-pro/static/js/main.e4776167.js",
+    "main.js": "/wichtel-pro/static/js/main.04bd38c5.js",
     "index.html": "/wichtel-pro/index.html",
-    "main.e4776167.js.map": "/wichtel-pro/static/js/main.e4776167.js.map"
+    "main.04bd38c5.js.map": "/wichtel-pro/static/js/main.04bd38c5.js.map"
   },
   "entrypoints": [
-    "static/js/main.e4776167.js"
+    "static/js/main.04bd38c5.js"
   ]
 }
