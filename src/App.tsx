@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate replace to="create" />} />
         <Route path="create" element={<CreateList />} />
-        <Route path="show/:code" element={<Show />} />
+        <Route path="show/:santa/:buddy" element={<Show />} />
       </Routes>
     </div>
   )

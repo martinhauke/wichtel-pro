@@ -11,7 +11,6 @@ export type Participant = {
   uuid: string
   name: string
   url: string
-  target: string
   wasCopiedToClipboard: boolean
   wasShared: boolean
 }
@@ -60,19 +59,19 @@ const shuffleParticipants = (input: Participant[]) => {
   return shuffled
 }
 
-const encode = (input: string) => window.btoa(input)
+const encode = (input: string) => encodeURIComponent(window.btoa(input))
+export const decode = (input: string) => window.atob(decodeURIComponent(input))
 
 const shuffleAndAssign = (input: Participant[]): Participant[] => {
   const shuffledList = shuffleParticipants(input)
   return input.map((it, index) => {
-    const target = encodeURIComponent(encode(shuffledList[index].name ?? ''))
+    const target = encode(shuffledList[index].name ?? '')
     const href = new URL(
-      '#/show/' + target,
+      '#/show/' + it.name + '/' + target,
       window.location.origin + window.location.pathname
     ).href
     return {
       ...it,
-      target,
       wasCopiedToClipboard: false,
       wasShared: false,
       url: href,
@@ -91,7 +90,6 @@ const useParticipant = (): UseParticipant => {
           uuid: uuidv4(),
           name: action.payload.name,
           url: '',
-          target: '',
           wasCopiedToClipboard: false,
           wasShared: false,
         }
