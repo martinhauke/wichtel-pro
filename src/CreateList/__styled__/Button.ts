@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-const Button = styled.button`
+type ButtonProps = {
+    wasClicked?: boolean
+}
+
+const Button = styled.button<ButtonProps>`
   padding-top: ${(props) => props.theme.spaces.small};
   padding-bottom: ${(props) => props.theme.spaces.small};
   padding-left: ${(props) => props.theme.spaces.medium};
@@ -9,7 +13,7 @@ const Button = styled.button`
   border: none;
   border-radius: ${(props) => props.theme.borderRadius};
 
-  background-color: ${(props) => props.theme.colors.affirm};
+  background-color: ${(props) => props.wasClicked ? props.theme.colors.affirmHover : props.theme.colors.affirm};
   color: ${(props) => props.theme.colors.textLight};
 
   &:hover {

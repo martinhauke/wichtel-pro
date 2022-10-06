@@ -49,7 +49,7 @@ const ParticipantControls = ({
   return (
     <StyledParticipantControls>
       {participant.url && (
-        <Button onClick={handleCopy} value="copy">
+        <Button onClick={handleCopy} wasClicked={participant.wasCopiedToClipboard} value="copy">
           <FontAwesomeIcon
             icon={
               participant.wasCopiedToClipboard ? faClipboardCheck : faClipboard
@@ -58,7 +58,7 @@ const ParticipantControls = ({
         </Button>
       )}
       {participant.url && navigator['share'] && (
-        <Button onClick={handleShare} value="share">
+        <Button onClick={handleShare} wasClicked={participant.wasShared} value="share">
           <FontAwesomeIcon
             icon={participant.wasShared ? faSquareCheck : faShareFromSquare}
           />
