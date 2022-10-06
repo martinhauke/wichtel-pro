@@ -3,40 +3,65 @@ import Button from './__styled__/Button'
 import StyledParticipantControls from './__styled__/ParticipantControls'
 import useCopyToClipboard from './useCopyToClipboard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShareFromSquare, faCopy } from '@fortawesome/free-solid-svg-icons'
+import {
+  faShareFromSquare,
+  faClipboard,
+  faClipboardCheck,
+  faSquareCheck,
+} from '@fortawesome/free-solid-svg-icons'
+import { Participant, ParticipantAction } from './useParticipant'
 
 type ParticipantControlsProps = {
-  url: string
+  participant: Participant
+  dispatch: React.Dispatch<ParticipantAction>
 }
 
-const ParticipantControls = ({ url }: ParticipantControlsProps) => {
+const ParticipantControls = ({
+  participant,
+  dispatch,
+}: ParticipantControlsProps) => {
   const [value, copy] = useCopyToClipboard()
+
+  // TODO might want to move this to useParticipant
+  const handleCopy = (_: any) => {
+    copy(participant.url).then(() =>
+      dispatch({ type: 'copyToClipboard', payload: { uuid: participant.uuid } })
+    )
+  }
+
+  // TODO might want to move this to useParticipant
   const handleShare = async () => {
     const data: ShareData = {
-      url,
+      url: participant.url,
       title: 'Wichtel link',
       text: 'link to wichtel',
     }
     if (navigator.share) {
       try {
         await navigator.share(data).then(() => {
-          console.log('jupp')
+          dispatch({ type: 'share', payload: { uuid: participant.uuid } })
         })
       } catch (error) {
-        console.log('nope', error)
+        // TODO feedback for user
       }
     }
   }
   return (
     <StyledParticipantControls>
-      {url && (
-        <Button onClick={(_) => copy(url)} value="copy">
-          <FontAwesomeIcon icon={faCopy} />
+      {participant.url && (
+        <Button onClick={handleCopy} value="copy">
+          <FontAwesomeIcon
+            icon={
+              participant.wasCopiedToClipboard ? faClipboardCheck : faClipboard
+            }
+          />
         </Button>
       )}
-      {url && navigator['share'] && (
+      {participant.url && navigator['share'] && (
         <Button onClick={handleShare} value="share">
-          <FontAwesomeIcon icon={faShareFromSquare} />
+          <FontAwesomeIcon
+            icon={participant.wasShared ? faSquareCheck : faShareFromSquare}
+          />
         </Button>
       )}
     </StyledParticipantControls>

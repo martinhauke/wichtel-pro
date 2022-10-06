@@ -12,9 +12,15 @@ export type Participant = {
   name: string
   url: string
   target: string
+  wasCopiedToClipboard: boolean
+  wasShared: boolean
 }
 
-type ParticipantAction = AddParticipantAction | ShuffleAction
+export type ParticipantAction =
+  | AddParticipantAction
+  | ShuffleAction
+  | CopyToClipboardAction
+  | ShareAction
 
 type AddParticipantAction = {
   type: 'addParticipant'
@@ -25,6 +31,20 @@ type AddParticipantAction = {
 
 type ShuffleAction = {
   type: 'shuffle'
+}
+
+type CopyToClipboardAction = {
+  type: 'copyToClipboard'
+  payload: {
+    uuid: string
+  }
+}
+
+type ShareAction = {
+  type: 'share'
+  payload: {
+    uuid: string
+  }
 }
 
 const shuffleParticipants = (input: Participant[]) => {
@@ -53,6 +73,8 @@ const shuffleAndAssign = (input: Participant[]): Participant[] => {
     return {
       ...it,
       target,
+      wasCopiedToClipboard: false,
+      wasShared: false,
       url: href,
     }
   })
@@ -70,10 +92,22 @@ const useParticipant = (): UseParticipant => {
           name: action.payload.name,
           url: '',
           target: '',
+          wasCopiedToClipboard: false,
+          wasShared: false,
         }
-        return shuffleAndAssign([...state, newParticipant])
+        return shuffleAndAssign([newParticipant, ...state])
       case 'shuffle':
         return shuffleAndAssign(state)
+      case 'copyToClipboard':
+        return state.map((it) =>
+          it.uuid === action.payload.uuid
+            ? { ...it, wasCopiedToClipboard: true }
+            : it
+        )
+      case 'share':
+        return state.map((it) =>
+          it.uuid === action.payload.uuid ? { ...it, wasShared: true } : it
+        )
     }
   }
   const [participants, dispatch] = useReducer(participantReducer, [])

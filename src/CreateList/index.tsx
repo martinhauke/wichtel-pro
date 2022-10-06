@@ -15,7 +15,7 @@ const CreateList = () => {
   return (
     <Content>
       <AddParticipantInput onAddParticipant={handleAddParticipant} />
-      <ParticipantList participants={participants} />
+      <ParticipantList participants={participants} dispatch={dispatch} />
     </Content>
   )
 }

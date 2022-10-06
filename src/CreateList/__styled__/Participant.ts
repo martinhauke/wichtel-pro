@@ -13,7 +13,7 @@ const Participant = styled.li`
 
   padding: ${(props) => props.theme.spaces.small};
 
-  &:nth-of-type(even) {
+  &:nth-last-of-type(even) {
     background-color: ${(props) => props.theme.colors.defaultBackground};
   }
 `

@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
 
   @media screen and (max-width: ${(props) => props.theme.content.width}) {
     body {
-      font-size: 1.5em;
+      font-size: 1.3em;
     }
   }
 `
